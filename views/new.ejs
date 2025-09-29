@@ -1,0 +1,62 @@
+<% layout("/layout/boilerplate.ejs")-%>
+
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+             <form enctype="multipart/form-data"  method="post"  action="/listings" novalidate class="needs-validation">
+<!-- <br><br> -->
+<div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+        <input id="title" type="text" name="listing[title]" placeholder="enter catchy title"  required   class="form-control border border-dark">
+        <div class="valid-feedback">title looks good</div>
+</div>
+   
+<div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea id="description"  name="listing[description]" rows="2" cols="30"   required class="form-control border border-dark"></textarea>
+    <div class="invalid-feedback">Please enter short description</div>
+</div>
+   
+   
+<div class="mb-3"> 
+    <label for="image" class="form-label">Picture</label>
+    <input id="image"  type="file"  name="listing[image][url]" placeholder="url/link"   class="form-control border border-dark">
+    
+</div>
+   
+   
+    <div class="row">
+        <div class="mb-3 col-md-4">
+        <label for="price" class="form-label ">Price</label>
+    <input id="price"  name="listing[price]" placeholder="1200" required   class="form-control border border-dark">
+        <div class="invalid-feedback">enter valid price</div>
+
+    </div>
+    
+   
+   
+    <div class="mb-3 col-md-8">
+    <label for="location" class="form-label">Location</label>
+    <input id="location" type="text" name="listing[location]" placeholder="Indore , Rajasthan"  required  class="form-control border border-dark">
+    </div>
+        <div class="invalid-feedback">entervalid location name</div>
+
+    </div>
+   
+   
+    <div class="mb-3">
+        <label for="Country" class="form-label">Country</label>
+    <input id="Country" type="text" name="listing[country]" placeholder="India"  required  class="form-control border border-dark">
+            <div class="invalid-feedback">entervalid country name</div>
+
+    </div>
+   
+   
+    <button class="btn btn-danger">submit</button>
+    <br><br>
+    </form>
+        </div>
+       
+    </div>
+    
+</body>
