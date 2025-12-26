@@ -93,6 +93,17 @@ app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 
 app.use("/user",userRouter);
+
+// Root route redirect
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
+// Favicon handler to prevent 404s
+app.get("/favicon.ico", (req, res) => {
+    res.status(204).end();
+});
+
 // const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
 const AtlasUrl=process.env.ATLAS_URL;
 async function main() {
