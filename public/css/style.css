@@ -7,10 +7,12 @@ body{
 .container
 {
     flex: 1 !important;
+    padding: 0 15px;
 }
 
 .navbar{
-    height: 5rem;
+    height: auto;
+    min-height: 5rem;
 }
 
 
@@ -47,11 +49,13 @@ body{
 }
 .f-info{
     text-align: center;
-    height: 8rem;
+    min-height: 8rem;
+    padding: 1rem 0;
     background-color: #ebebeb;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 1rem;
 }
 .listing-card{
     border: none !important;
@@ -87,14 +91,123 @@ body{
 
 .showImg{
     height: 30vh;
+    width: 100%;
+    object-fit: cover;
 }
 
 .btns{
     display: flex;
-
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 #map { 
     height: 400px;
-    width: 100vh;
+    width: 100%;
+    border-radius: 1rem;
  }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .navbar {
+        padding: 0.5rem 0;
+    }
+    
+    .showImg {
+        height: 25vh;
+    }
+    
+    .btns {
+        flex-direction: column;
+    }
+    
+    .btns .btn,
+    .btns form {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+    
+    #map {
+        height: 300px;
+    }
+    
+    .f-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .f-info-socials i {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .showImg {
+        height: 20vh;
+    }
+    
+    #map {
+        height: 250px;
+    }
+    
+    .f-info-socials i {
+        font-size: 0.9rem;
+        margin-right: 0.3rem;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-control {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    h1, h2, h3 {
+        font-size: 1.5rem;
+    }
+    
+    .listing-card .card-img-top {
+        height: 15rem !important;
+    }
+}
+
+/* Additional responsive utilities */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem !important;
+    }
+    
+    textarea.form-control {
+        min-height: 80px;
+    }
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Improve button spacing on mobile */
+@media (max-width: 576px) {
+    .btns .btn,
+    .btns form .btn {
+        width: 100%;
+    }
+    
+    .btns form {
+        width: 100%;
+    }
+}

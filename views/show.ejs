@@ -5,9 +5,9 @@
 </script>
 <body>
   <div class="row mt-3 mb-3">
-    <div class="col-8 offset-3">
+    <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
       <h3 class="head"><b><%=listing.title%></b></h3>
-      <div class="card listing-card col-8">
+      <div class="card listing-card">
         <img
           src="<%=listing.image.url%>"
           class="card-img-top showImg"
@@ -16,15 +16,15 @@
         <div class="card-body" style="padding: 0">
           <p class="card-text">
             <br />
-            <p><%=listing.owner.username%></p>
+            <p><strong>Owner:</strong> <%=listing.owner.username%></p>
             <br />
-            <p><%=listing.description%></p>
+            <p><strong>Description:</strong> <%=listing.description%></p>
             <br />
-            <p><%=listing.price%></p>
+            <p><strong>Price:</strong> &#8377;<%=listing.price ? listing.price.toLocaleString("en-IN") : "N/A"%>/night</p>
             <br />
-            <p><%=listing.location%></p>
+            <p><strong>Location:</strong> <%=listing.location%></p>
             <br />
-            <p><%=listing.country%></p>
+            <p><strong>Country:</strong> <%=listing.country%></p>
             <br />
           </p>
         </div>
@@ -32,29 +32,32 @@
     </div>
 
     <%if(currentUser&&currentUser._id.equals(listing.owner._id)) {%>
-    <div class="btns">
-      <a
-        href="/listings/<%=listing._id%>/edit"
-        class="btn btn-danger offset-3 col-1"
-        >Edit</a
-      >
-      <form
-        method="post"
-        action="/listings/<%=listing._id%>/delete?_method=delete"
-      >
-        <button class="btn btn-danger offset-5">Delete</button>
-      </form>
+    <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+      <div class="btns">
+        <a
+          href="/listings/<%=listing._id%>/edit"
+          class="btn btn-danger"
+          >Edit</a
+        >
+        <form
+          method="post"
+          action="/listings/<%=listing._id%>/delete?_method=delete"
+          style="display: inline;"
+        >
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
     </div>
      <%}%> 
 
    
   </div>
   <hr>
-   <div class="col-8 offset-3 mb-3" >
+   <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2 mb-3" >
         <h3>Where you 'll be</h3>
         <div id="map" ></div>
       </div>
- <div class="col-8 offset-3 ">
+ <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
       <%if(currentUser){%>
         <h4> Leave a Review</h4>
 
@@ -96,7 +99,7 @@
 
       <div class="row">
              <% for(let review of listing.reviews){%>
-               <div class="card col-5 ms-3 mb-3">
+               <div class="card col-12 col-md-5 col-lg-5 mb-3 me-md-3">
             <div class="card-body">
             <h5 class="card-title">
               @<%=review.author.username%>

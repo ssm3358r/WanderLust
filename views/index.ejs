@@ -5,32 +5,42 @@
   display: none;
 }
 .tax-toggle{
-  position: absolute;
-  right: 2rem;
+  flex: 0 0 auto;
   border: 1px solid black;
   display: flex;
   text-align: center;
   border-radius: 2rem;
   padding: .6rem;
+  margin-left: auto;
+  white-space: nowrap;
 }
 
-#filters{
-  width: 80%;
+.filters-container{
   display: flex;
-  flex-wrap: nowrap;       /* prevent wrapping */
+  align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  position: relative;
+}
+
+#filters{
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;       /* prevent wrapping */
+  gap: 1rem;
   align-items: center;
   overflow-x: auto;        /* enable horizontal scroll */
   scrollbar-width: none;   /* hide scrollbar in Firefox */
+  padding: 0.5rem 0;
+  min-width: 0;           /* allows flex item to shrink */
 }
 #filters::-webkit-scrollbar{
   display: none;           /* hide scrollbar in Chrome/Safari */
 }
 
 .filter{
-  flex: 0 0 auto;          /* don’t shrink */
+  flex: 0 0 auto;          /* don't shrink */
   text-align: center;
   opacity: .7;
   min-width: 80px;
@@ -44,107 +54,179 @@
 }
 .filter p{
   font-size: .8rem;
+  margin: 0.25rem 0 0 0;
 }
 
 /* ✅ Responsiveness */
 @media (max-width: 768px){
+  .filters-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
   .tax-toggle{
-    position: static; /* avoid breaking on small screens */
-    margin-left: auto;
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  #filters {
+    gap: 0.75rem;
+  }
+  
+  .filter {
+    min-width: 70px;
+  }
+  
+  .filter i {
+    font-size: 1rem;
+  }
+  
+  .filter p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px){
+  .filter {
+    min-width: 60px;
+  }
+  
+  .filter i {
+    font-size: 0.9rem;
+  }
+  
+  .filter p {
+    font-size: 0.7rem;
+  }
+  
+  #filters {
+    gap: 0.5rem;
+  }
+  
+  .tax-toggle {
+    padding: 0.4rem;
+  }
+  
+  .tax-toggle .form-check-label {
+    font-size: 0.85rem;
   }
 }
 </style>
 
 <body>
-  <div id="filters">
-
+  <div class="filters-container">
+    <div id="filters">
       <div class="filter">
-      <div><i class="fa-solid fa-fire"></i></div>
-      <p>Trending</p>
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic cities</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountain</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Pools</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farm </p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Snow</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Pools</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farm </p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Snow</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Pools</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>Farm </p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Snow</p>
+      </div>
     </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-bed"></i></div>
-      <p>Rooms</p>
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      </div>
     </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-mountain-city"></i></div>
-      <p>Iconic cities</p>
     </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-mountain"></i></div>
-      <p>Mountain</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-person-swimming"></i></div>
-      <p>Pools</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-campground"></i></div>
-      <p>Camping</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-cow"></i></div>
-      <p>Farm </p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-snowflake"></i></div>
-      <p>Snow</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-person-swimming"></i></div>
-      <p>Pools</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-campground"></i></div>
-      <p>Camping</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-cow"></i></div>
-      <p>Farm </p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-snowflake"></i></div>
-      <p>Snow</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-person-swimming"></i></div>
-      <p>Pools</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-campground"></i></div>
-      <p>Camping</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-cow"></i></div>
-      <p>Farm </p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-snowflake"></i></div>
-      <p>Snow</p>
-    </div>
-   <div class="tax-toggle">
-     <div class="form-check-reverse form-switch">
-    <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
-  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-</div>
-   </div>
     
+    <% if(typeof searchQuery !== 'undefined' && searchQuery) { %>
+      <div class="alert alert-info mt-3" role="alert">
+        <% if(allListings.length > 0) { %>
+          Found <strong><%= allListings.length %></strong> result(s) for "<strong><%= searchQuery %></strong>"
+        <% } else { %>
+          No results found for "<strong><%= searchQuery %></strong>". <a href="/listings" class="alert-link">View all listings</a>
+        <% } %>
+      </div>
+    <% } %>
     
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3" >
+ <%if(allListings.length > 0) { %>
+  <%for(let listing of allListings){%>
+  <div class="col">
+  <a href="/listings/<%= listing._id %>/show" class="card-links">
+    <div class="card listing-card h-100" >
+      <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem; object-fit: cover;">
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text"> <b><%=listing.title%></b>
+        <br>
+        &#8377;
+    <%=listing.price ? listing.price.toLocaleString("en-IN") : "N/A"%>/night &nbsp; &nbsp; &nbsp;<i class="tax-percent"> +18%GST</i></p>
+      </div>
+    </div>
+  </a>
   </div>
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1" >
- <%for(let listing of allListings){%>
-  <a href="/listings/<%= listing._id %>/show" class="card-links"><div class="card listing-card col" >
-  <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
-  <div class="card-img-overlay"></div>
-  <div class="card-body">
-    <p class="card-text"> <b><%=listing.title%></b>
-    <br>
-    &#8377;
-<%=listing.price ? listing.price.toLocaleString("en-IN") : "N/A"%>/night &nbsp; &nbsp; &nbsp;<i class="tax-percent"> +18%GST</i></p>
-  </div>
-</div></a>
 
  <%}%>
+ <% } else if(typeof searchQuery === 'undefined' || !searchQuery) { %>
+  <div class="col-12">
+    <div class="alert alert-secondary text-center" role="alert">
+      No listings available. <a href="/listings/new" class="alert-link">Create a new listing</a>
+    </div>
+  </div>
+ <% } %>
 
     </div>
 
@@ -162,7 +244,7 @@
         }
         
         }
-       
+        
         
       });
     </script>

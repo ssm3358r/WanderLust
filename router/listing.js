@@ -11,6 +11,9 @@ const multer=require("multer"); // for handling multipart/form-data, which is pr
 const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage }); // multer instance configured to use Cloudinary storage 
 
+// search route - must be before the index route to avoid conflicts
+router.get("/search", wrapAsync(index));
+
 // index route
 router.route("/")
 .get(wrapAsync(index))

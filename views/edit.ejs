@@ -3,7 +3,7 @@
 <body>
 
     <div class="row ">
-        <div class="col-8 offset-2">
+        <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
  <form enctype="multipart/form-data" novalidate class="needs-validation" method="post" action="/listings/<%=listing._id%>?_method=PUT">
 
         <div class="mb-3">
@@ -19,7 +19,7 @@
 
     <div class="mb-3"> original Image
         <br>
-    <img  src="<%=originalImageurl%>" alt="NO image" style="max-width: 200px; max-height: 200px;"> 
+    <img  src="<%=originalImageurl%>" alt="NO image" class="img-fluid" style="max-width: 200px; max-height: 200px; width: 100%; height: auto;"> 
 </div>
     <div class="mb-3"> <label class="form-label" for="ImageUrl">Upload Image</label>
     <input    class="form-control border border-dark"id="ImageUrl" type="file"  name="listing[image][url]"  value="<%=listing.image.url%>"> 

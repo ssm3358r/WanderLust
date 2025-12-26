@@ -28,6 +28,17 @@
 <!-- <script src="/utils/wrapAsync.js"></script> -->
 <script src="/js/script.js"></script>
 
+<script>
+  // Preserve search query in navbar search input
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('q');
+    if (searchInput && searchQuery) {
+      searchInput.value = searchQuery;
+    }
+  });
+</script>
 
 </body>
 </html>
