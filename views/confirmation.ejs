@@ -1,0 +1,102 @@
+<% layout("/layout/boilerplate.ejs") %>
+
+<%
+  const checkIn = new Date(reservation.checkIn);
+  const checkOut = new Date(reservation.checkOut);
+  const bookedOn = new Date(reservation.createdAt);
+%>
+
+<section class="booking-page">
+  <div class="booking-hero">
+    <div class="booking-copy">
+      <p class="booking-kicker">Reservation confirmed</p>
+      <h1>Your Wanderlust stay is locked in.</h1>
+      <p class="booking-subcopy">
+        This confirmation page gives you a clean summary of your stay, dates,
+        guests, and trip total without needing a payment gateway.
+      </p>
+      <div class="booking-badges">
+        <span><i class="fa-solid fa-circle-check"></i> Status: <%= reservation.status %></span>
+        <span><i class="fa-solid fa-hashtag"></i> Booking ID: <%= reservation._id %></span>
+      </div>
+    </div>
+    <div class="booking-hero-image">
+      <img src="<%= reservation.listing.image.url %>" alt="<%= reservation.listing.title %>">
+    </div>
+  </div>
+
+  <div class="booking-layout">
+    <div class="booking-form-card">
+      <div class="booking-card-head">
+        <h2><%= reservation.listing.title %></h2>
+        <p><%= reservation.listing.location %>, <%= reservation.listing.country %></p>
+      </div>
+
+      <div class="summary-lines">
+        <div class="summary-line">
+          <span>Guest</span>
+          <strong><%= reservation.guest.username %></strong>
+        </div>
+        <div class="summary-line">
+          <span>Check-in</span>
+          <strong><%= checkIn.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></strong>
+        </div>
+        <div class="summary-line">
+          <span>Check-out</span>
+          <strong><%= checkOut.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></strong>
+        </div>
+        <div class="summary-line">
+          <span>Guests</span>
+          <strong><%= reservation.guests %></strong>
+        </div>
+        <div class="summary-line">
+          <span>Nights</span>
+          <strong><%= reservation.totalNights %></strong>
+        </div>
+        <div class="summary-line">
+          <span>Booked on</span>
+          <strong><%= bookedOn.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></strong>
+        </div>
+      </div>
+
+      <div class="booking-cta-row">
+        <div class="booking-mini-summary">
+          <span>Total reservation amount</span>
+          <strong>INR <%= reservation.totalPrice.toLocaleString("en-IN") %></strong>
+        </div>
+        <a href="/listings/<%= reservation.listing._id %>/show" class="btn booking-submit-btn">View listing</a>
+      </div>
+    </div>
+
+    <aside class="booking-summary-card">
+      <div class="summary-price-row">
+        <div>
+          <p class="summary-label">Stay total</p>
+          <h3>INR <%= reservation.totalPrice.toLocaleString("en-IN") %><span>/confirmed</span></h3>
+        </div>
+        <div class="summary-chip">Wanderlust</div>
+      </div>
+
+      <div class="summary-lines">
+        <div class="summary-line">
+          <span>Price per night</span>
+          <strong>INR <%= reservation.listing.price.toLocaleString("en-IN") %></strong>
+        </div>
+        <div class="summary-line">
+          <span>Total nights</span>
+          <strong><%= reservation.totalNights %></strong>
+        </div>
+        <div class="summary-line">
+          <span>Reservation status</span>
+          <strong class="text-capitalize"><%= reservation.status %></strong>
+        </div>
+      </div>
+
+      <div class="summary-notes">
+        <p><i class="fa-solid fa-house"></i> Hosted at <%= reservation.listing.title %></p>
+        <p><i class="fa-solid fa-location-dot"></i> <%= reservation.listing.location %>, <%= reservation.listing.country %></p>
+        <p><i class="fa-solid fa-user-group"></i> Reserved for <%= reservation.guests %> guest<%= reservation.guests === 1 ? "" : "s" %></p>
+      </div>
+    </aside>
+  </div>
+</section>

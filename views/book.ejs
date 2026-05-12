@@ -1,0 +1,194 @@
+<% layout("/layout/boilerplate.ejs") %>
+
+<%
+  const nightlyPrice = listing.price || 0;
+%>
+
+<section class="booking-page">
+  <div class="booking-hero">
+    <div class="booking-copy">
+      <p class="booking-kicker">Wanderlust booking</p>
+      <h1>Reserve your stay at <%= listing.title %></h1>
+      <p class="booking-subcopy">
+        Choose your travel dates, tell us how many guests are joining, and lock in
+        your stay with a clean booking flow inspired by your current Wanderlust theme.
+      </p>
+      <div class="booking-badges">
+        <span><i class="fa-solid fa-house"></i> Hosted by <%= listing.owner.username %></span>
+        <span><i class="fa-solid fa-location-dot"></i> <%= listing.location %>, <%= listing.country %></span>
+      </div>
+    </div>
+    <div class="booking-hero-image">
+      <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
+    </div>
+  </div>
+
+  <div class="booking-layout">
+    <div class="booking-form-card">
+      <div class="booking-card-head">
+        <h2>Plan your trip</h2>
+        <p>Fill in your stay details below to create a reservation.</p>
+      </div>
+
+      <form
+        method="post"
+        action="/listings/<%= listing._id %>/reservations"
+        novalidate
+        class="needs-validation booking-form"
+      >
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label for="checkIn" class="form-label">Check-in</label>
+            <input
+              id="checkIn"
+              type="date"
+              name="reservation[checkIn]"
+              class="form-control booking-input"
+              required
+            >
+            <div class="invalid-feedback">Choose your check-in date.</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="checkOut" class="form-label">Check-out</label>
+            <input
+              id="checkOut"
+              type="date"
+              name="reservation[checkOut]"
+              class="form-control booking-input"
+              required
+            >
+            <div class="invalid-feedback">Choose your check-out date.</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="guests" class="form-label">Guests</label>
+            <input
+              id="guests"
+              type="number"
+              name="reservation[guests]"
+              class="form-control booking-input"
+              min="1"
+              value="1"
+              required
+            >
+            <div class="invalid-feedback">At least 1 guest is required.</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="pricePerNight" class="form-label">Price per night</label>
+            <input
+              id="pricePerNight"
+              type="text"
+              class="form-control booking-input"
+              value="INR <%= nightlyPrice.toLocaleString('en-IN') %>"
+              disabled
+            >
+          </div>
+
+          <div class="col-12">
+            <label for="specialNote" class="form-label">Trip note</label>
+            <textarea
+              id="specialNote"
+              class="form-control booking-input booking-textarea"
+              rows="4"
+              placeholder="Optional note for yourself about this stay"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="booking-cta-row">
+          <div class="booking-mini-summary">
+            <span id="nightCount">0 nights</span>
+            <strong id="bookingTotal">INR 0</strong>
+          </div>
+          <button class="btn booking-submit-btn">Confirm reservation</button>
+        </div>
+      </form>
+    </div>
+
+    <aside class="booking-summary-card">
+      <div class="summary-price-row">
+        <div>
+          <p class="summary-label">Starting from</p>
+          <h3>INR <%= nightlyPrice.toLocaleString("en-IN") %><span>/night</span></h3>
+        </div>
+        <div class="summary-chip">Wanderlust</div>
+      </div>
+
+      <div class="summary-lines">
+        <div class="summary-line">
+          <span>Base stay</span>
+          <strong id="summaryBase">INR 0</strong>
+        </div>
+        <div class="summary-line">
+          <span>Service fee</span>
+          <strong id="summaryFee">INR 399</strong>
+        </div>
+        <div class="summary-line">
+          <span>Taxes estimate</span>
+          <strong id="summaryTax">INR 0</strong>
+        </div>
+      </div>
+
+      <div class="summary-total">
+        <span>Total before payment</span>
+        <strong id="summaryGrandTotal">INR 399</strong>
+      </div>
+
+      <div class="summary-notes">
+        <p><i class="fa-solid fa-circle-check"></i> Instant booking confirmation in your app</p>
+        <p><i class="fa-solid fa-shield-heart"></i> No payment gateway required for this version</p>
+        <p><i class="fa-solid fa-calendar-days"></i> Flexible date planning with live total updates</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script>
+  const nightlyPrice = <%= nightlyPrice %>;
+  const serviceFee = 399;
+  const taxRate = 0.18;
+  const checkInInput = document.getElementById("checkIn");
+  const checkOutInput = document.getElementById("checkOut");
+  const guestsInput = document.getElementById("guests");
+  const nightCount = document.getElementById("nightCount");
+  const bookingTotal = document.getElementById("bookingTotal");
+  const summaryBase = document.getElementById("summaryBase");
+  const summaryTax = document.getElementById("summaryTax");
+  const summaryGrandTotal = document.getElementById("summaryGrandTotal");
+
+  const today = new Date().toISOString().split("T")[0];
+  checkInInput.min = today;
+  checkOutInput.min = today;
+
+  function formatCurrency(amount) {
+    return `INR ${amount.toLocaleString("en-IN")}`;
+  }
+
+  function updateBookingSummary() {
+    const checkIn = new Date(checkInInput.value);
+    const checkOut = new Date(checkOutInput.value);
+    const timeDiff = checkOut.getTime() - checkIn.getTime();
+    const nights = Math.max(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)), 0);
+
+    if (checkInInput.value) {
+      checkOutInput.min = checkInInput.value;
+    }
+
+    const baseAmount = nights * nightlyPrice;
+    const taxes = Math.round(baseAmount * taxRate);
+    const grandTotal = baseAmount + taxes + serviceFee;
+
+    nightCount.textContent = `${nights} ${nights === 1 ? "night" : "nights"} for ${guestsInput.value || 1} guest${guestsInput.value === "1" ? "" : "s"}`;
+    bookingTotal.textContent = formatCurrency(baseAmount);
+    summaryBase.textContent = formatCurrency(baseAmount);
+    summaryTax.textContent = formatCurrency(taxes);
+    summaryGrandTotal.textContent = formatCurrency(grandTotal);
+  }
+
+  checkInInput.addEventListener("change", updateBookingSummary);
+  checkOutInput.addEventListener("change", updateBookingSummary);
+  guestsInput.addEventListener("input", updateBookingSummary);
+  updateBookingSummary();
+</script>

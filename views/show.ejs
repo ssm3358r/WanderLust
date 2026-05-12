@@ -31,9 +31,14 @@
       </div>
     </div>
 
-    <%if(currentUser&&currentUser._id.equals(listing.owner._id)) {%>
     <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
       <div class="btns">
+        <a
+          href="/listings/<%=listing._id%>/reservations/book"
+          class="btn btn-outline-danger"
+          >Reserve</a
+        >
+        <%if(currentUser&&currentUser._id.equals(listing.owner._id)) {%>
         <a
           href="/listings/<%=listing._id%>/edit"
           class="btn btn-danger"
@@ -46,9 +51,9 @@
         >
           <button class="btn btn-danger">Delete</button>
         </form>
+        <%}%>
       </div>
     </div>
-     <%}%> 
 
    
   </div>

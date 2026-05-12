@@ -65,8 +65,8 @@ passport.deserializeUser(User.deserializeUser());// get user from session
 app.get("/demouser",async(req,res)=>{
 let user=new User({email:"malviya.sourabh,124@gmail.com",
     username:"Sourabh Malviya"
-
 })
+
 let registeredUser=await User.register(user,"Sourabh@123");
 res.send(registeredUser);
 })
@@ -86,11 +86,14 @@ const Review =require("./Models/review.js");
 const listingsRouter=require("./router/listing.js");
 
 const reviewRouter=require("./router/reviews.js");
+const { listingReservationRouter, reservationRouter }=require("./router/reservations.js");
 const userRouter=require("./router/user.js");
 
 app.use("/listings",listingsRouter);
 
 app.use("/listings/:id/reviews",reviewRouter);
+app.use("/listings/:id/reservations",listingReservationRouter);
+app.use("/reservations",reservationRouter);
 
 app.use("/user",userRouter);
 

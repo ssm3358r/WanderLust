@@ -108,6 +108,299 @@ body{
     border-radius: 1rem;
  }
 
+.booking-page {
+    padding: 2rem 0 3rem;
+}
+
+.booking-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    margin-bottom: 2rem;
+}
+
+.booking-copy,
+.booking-hero-image,
+.booking-form-card,
+.booking-summary-card {
+    border: 1px solid #f3d7da;
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, #fffdfd 0%, #fff7f8 100%);
+    box-shadow: 0 18px 45px rgba(254, 66, 77, 0.08);
+}
+
+.booking-copy {
+    padding: 2rem;
+}
+
+.booking-kicker {
+    color: #fe424d;
+    text-transform: uppercase;
+    letter-spacing: 0.18rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.booking-copy h1 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+}
+
+.booking-subcopy {
+    color: #5f5f67;
+    font-size: 1.02rem;
+    max-width: 38rem;
+}
+
+.booking-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.booking-badges span,
+.summary-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    background-color: #fff;
+    border: 1px solid #f5c8cd;
+    color: #202020;
+    font-size: 0.92rem;
+}
+
+.booking-hero-image {
+    overflow: hidden;
+    min-height: 18rem;
+}
+
+.booking-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.booking-form-card,
+.booking-summary-card {
+    padding: 1.5rem;
+}
+
+.booking-card-head h2 {
+    margin-bottom: 0.35rem;
+}
+
+.booking-card-head p,
+.summary-label,
+.summary-notes p {
+    color: #66646d;
+}
+
+.booking-form {
+    margin-top: 1.5rem;
+}
+
+.booking-input {
+    border-radius: 1rem !important;
+    border: 1px solid #e8c8cd !important;
+    padding: 0.9rem 1rem !important;
+    background-color: #fff !important;
+}
+
+.booking-input:focus {
+    border-color: #fe424d !important;
+    box-shadow: 0 0 0 0.25rem rgba(254, 66, 77, 0.12) !important;
+}
+
+.booking-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.booking-cta-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f1dde0;
+}
+
+.booking-mini-summary span {
+    display: block;
+    color: #6d6771;
+    font-size: 0.92rem;
+}
+
+.booking-mini-summary strong {
+    font-size: 1.35rem;
+}
+
+.booking-submit-btn {
+    border: none !important;
+    border-radius: 999px !important;
+    padding: 0.85rem 1.5rem !important;
+    background: linear-gradient(135deg, #ff5a5f 0%, #fe424d 100%) !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    box-shadow: 0 14px 30px rgba(254, 66, 77, 0.22);
+}
+
+.booking-submit-btn:hover {
+    transform: translateY(-1px);
+}
+
+.summary-price-row,
+.summary-line,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.summary-price-row h3 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.summary-price-row h3 span {
+    font-size: 0.95rem;
+    color: #67616b;
+    margin-left: 0.25rem;
+}
+
+.summary-lines {
+    margin: 1.5rem 0;
+    padding: 1.25rem 0;
+    border-top: 1px solid #f1dde0;
+    border-bottom: 1px solid #f1dde0;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.summary-total {
+    font-size: 1.05rem;
+}
+
+.summary-total strong {
+    font-size: 1.3rem;
+}
+
+.summary-notes {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.summary-notes p {
+    margin: 0;
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+}
+
+.summary-notes i {
+    color: #fe424d;
+}
+
+.reservation-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.reservation-card {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1rem;
+    border: 1px solid #f3d7da;
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, #fffdfd 0%, #fff7f8 100%);
+    box-shadow: 0 18px 45px rgba(254, 66, 77, 0.08);
+}
+
+.reservation-card-image {
+    overflow: hidden;
+    border-radius: 1.1rem;
+    min-height: 220px;
+}
+
+.reservation-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reservation-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.reservation-card-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.reservation-card-head h2 {
+    margin-bottom: 0.35rem;
+}
+
+.reservation-location {
+    color: #66646d;
+    margin: 0;
+}
+
+.reservation-price {
+    white-space: nowrap;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fe424d;
+}
+
+.reservation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid #f1dde0;
+    border-bottom: 1px solid #f1dde0;
+}
+
+.reservation-grid span {
+    display: block;
+    color: #66646d;
+    margin-bottom: 0.2rem;
+}
+
+.reservation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.reservation-empty {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .container {
@@ -181,6 +474,38 @@ body{
     .listing-card .card-img-top {
         height: 15rem !important;
     }
+
+    .booking-page {
+        padding-top: 1rem;
+    }
+
+    .booking-hero,
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-copy,
+    .booking-form-card,
+    .booking-summary-card {
+        padding: 1.2rem;
+    }
+
+    .booking-copy h1 {
+        font-size: 2rem;
+    }
+
+    .booking-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .reservation-card {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 /* Additional responsive utilities */
@@ -209,5 +534,18 @@ img {
     
     .btns form {
         width: 100%;
+    }
+
+    .reservation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-card-head,
+    .reservation-actions {
+        flex-direction: column;
+    }
+
+    .reservation-price {
+        white-space: normal;
     }
 }

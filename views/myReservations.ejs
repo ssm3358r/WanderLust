@@ -1,0 +1,94 @@
+<% layout("/layout/boilerplate.ejs") %>
+
+<section class="booking-page">
+  <div class="booking-hero">
+    <div class="booking-copy">
+      <p class="booking-kicker">Your trips</p>
+      <h1>My Reservations</h1>
+      <p class="booking-subcopy">
+        Review all your confirmed Wanderlust stays in one place, with quick access
+        to booking details and the original listing.
+      </p>
+      <div class="booking-badges">
+        <span><i class="fa-solid fa-suitcase-rolling"></i> <%= reservations.length %> booking<%= reservations.length === 1 ? "" : "s" %></span>
+        <span><i class="fa-solid fa-circle-check"></i> Reservation history</span>
+      </div>
+    </div>
+    <div class="booking-hero-image">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Travel overview">
+    </div>
+  </div>
+
+  <% if (reservations.length) { %>
+    <div class="reservation-list">
+      <% reservations.forEach((reservation) => { %>
+        <%
+          const checkIn = new Date(reservation.checkIn);
+          const checkOut = new Date(reservation.checkOut);
+          const bookedOn = new Date(reservation.createdAt);
+        %>
+        <article class="reservation-card">
+          <div class="reservation-card-image">
+            <img src="<%= reservation.listing.image.url %>" alt="<%= reservation.listing.title %>">
+          </div>
+
+          <div class="reservation-card-body">
+            <div class="reservation-card-head">
+              <div>
+                <p class="booking-kicker">Reservation <%= reservation.status %></p>
+                <h2><%= reservation.listing.title %></h2>
+                <p class="reservation-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <%= reservation.listing.location %>, <%= reservation.listing.country %>
+                </p>
+              </div>
+              <div class="reservation-price">
+                INR <%= reservation.totalPrice.toLocaleString("en-IN") %>
+              </div>
+            </div>
+
+            <div class="reservation-grid">
+              <div>
+                <span>Check-in</span>
+                <strong><%= checkIn.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></strong>
+              </div>
+              <div>
+                <span>Check-out</span>
+                <strong><%= checkOut.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></strong>
+              </div>
+              <div>
+                <span>Guests</span>
+                <strong><%= reservation.guests %></strong>
+              </div>
+              <div>
+                <span>Nights</span>
+                <strong><%= reservation.totalNights %></strong>
+              </div>
+              <div>
+                <span>Booked on</span>
+                <strong><%= bookedOn.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></strong>
+              </div>
+              <div>
+                <span>Status</span>
+                <strong class="text-capitalize"><%= reservation.status %></strong>
+              </div>
+            </div>
+
+            <div class="reservation-actions">
+              <a href="/reservations/<%= reservation._id %>/confirmation" class="btn booking-submit-btn">View Reservation</a>
+              <a href="/listings/<%= reservation.listing._id %>/show" class="btn btn-outline-dark">View Listing</a>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="reservation-empty booking-form-card">
+      <h2>No reservations yet</h2>
+      <p class="booking-subcopy">
+        You have not booked a stay yet. Explore listings and create your first reservation.
+      </p>
+      <a href="/listings" class="btn booking-submit-btn">Explore Listings</a>
+    </div>
+  <% } %>
+</section>
